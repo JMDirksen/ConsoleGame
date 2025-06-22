@@ -10,6 +10,9 @@ Helpful docker commands
 
 ## Dev environment
 
-`docker run -d -p 80:80 --name consolegame -v .:/var/www/html php:8-apache`
+```
+docker rm -f consolegame
+docker run -d -p 80:80 --name consolegame -v .:/var/www php:8-apache
+```
 
 http://localhost
