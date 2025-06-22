@@ -1,0 +1,55 @@
+body {
+    background-color: black;
+}
+
+.console {
+    background-color: #323232;
+    color: #B16818;
+    padding: 10px;
+    width: 800px;
+    height: 600px;
+    border-style: double;
+
+    /* crt effect */
+    background: linear-gradient(to top, #151515, #151515, #333333, #333333);
+    background-size: cover;
+    background-size: 100% 1px;
+}
+
+.console, .console .input input, .console pre {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.console pre {
+    margin: 0;
+}
+
+input, input:focus {
+    background-color: #323232;
+    background-color: transparent;
+    color: #B16818;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14pt;
+    font-weight: bold;
+    padding: 0px;
+    border: 0;
+    outline: none;
+}
+
+@media screen {
+    .console {
+        animation: scanlines infinite 55s linear;
+    }
+}
+
+@keyframes scanlines {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 -10px;
+    }
+}
