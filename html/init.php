@@ -11,12 +11,3 @@ define("VER", "v0.0.1");
 // Database setup
 $db = new SQLite3("../consolegame.db");
 $db->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, code TEXT)');
-/*
-$db->exec('INSERT INTO users (email) VALUES ("test@test.com")');
-$results = $db->query('SELECT * FROM users');
-echo "<pre>";
-while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-    var_dump($row);
-}
-echo "</pre>";
-*/
