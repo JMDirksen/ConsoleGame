@@ -10,4 +10,4 @@ define("VER", "v0.0.1");
 
 // Database setup
 $db = new SQLite3("../consolegame.db");
-$db->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, code TEXT)');
+$db->exec('CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)');

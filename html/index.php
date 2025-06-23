@@ -1,7 +1,13 @@
 <?php
 require('init.php');
 $display = filter_var_array($_SESSION['display'] ?? [], FILTER_SANITIZE_SPECIAL_CHARS);
-
+$prompt = PROMPT;
+$inputType = "text";
+if (isset($_SESSION['input_password'])) {
+    $prompt = "Password: ";
+    $inputType = "password";
+}
+$inputSize = 80 - strlen($prompt);
 ?>
 <html>
 
@@ -16,7 +22,7 @@ $display = filter_var_array($_SESSION['display'] ?? [], FILTER_SANITIZE_SPECIAL_
             <div class="output">
                 <?php echo implode("<br />", $display) ?>
             </div>
-            <div class="input"><?php echo PROMPT ?> <input name="command" type="text" autofocus size="75" maxlength="75" onblur="focus()" /></div>
+            <div class="input"><?php echo $prompt ?> <input name="command" type="<?php echo $inputType ?>" autofocus size="<?php echo $inputSize ?>" maxlength="<?php echo $inputSize ?>" onblur="focus()" /></div>
         </div>
         <input type="submit" hidden />
     </form>
