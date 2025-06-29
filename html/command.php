@@ -71,8 +71,8 @@ if (isset($_SESSION['input_password'])) {
 
 // ?
 if ($cmd == "?") {
-    $help = new Help();
-    $display = array_merge($display, $help->run($args));
+    $help = new Help($display);
+    $help->run($args);
 }
 
 // cls
