@@ -5,14 +5,17 @@ class Help implements CommandInterface {
     }
     public string $command = "help";
     public array $aliases = ["?"];
+    public string $description = "Show available commands or command info";
+    public string $usage = "help [<command>]";
     private array $display;
-    public function run(array $args = []) {
+    public function run(array $args = []): void {
         $output = [];
         if (!count($args)) {
-            $output[] = "Available commands: ? cls login register ver";
-            $output[] = "Use '? <command>' for more info";
-        } elseif ($args[0] == "?") {
-            $output[] = "Show available commands";
+            $output[] = "Available commands: help cls login register ver";
+            $output[] = "Use 'help <command>' for more info";
+        } elseif ($args[0] == "help") {
+            $output[] = $this->description;
+            $output[] = $this->usage;
         } elseif ($args[0] == "cls") {
             $output[] = "Clear the screen";
         } elseif ($args[0] == "login") {
