@@ -5,4 +5,5 @@ interface CommandInterface {
     public string $description { get; }
     public string $usage { get; }
     public function run(array $args): void;
+    public function isAvailable(): bool;
 }

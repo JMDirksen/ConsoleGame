@@ -4,6 +4,11 @@ class Version implements CommandInterface {
     public array $aliases = ["ver"];
     public string $description = "Show Console Game version";
     public string $usage = "version";
+
+    public function isAvailable(): bool {
+        return true;
+    }
+
     public function run(array $args = []): void {
         $output = [];
 

@@ -2,8 +2,13 @@
 class Login implements CommandInterface {
     public string $command = "login";
     public array $aliases = [];
-    public string $description = "";
+    public string $description = "Login to user account";
     public string $usage = "login <username>";
+
+    public function isAvailable(): bool {
+        return !isset($_SESSION['userid']);
+    }
+
     public function run(array $args = []): void {
         $output = [];
 

@@ -4,6 +4,11 @@ class Register implements CommandInterface {
     public array $aliases = [];
     public string $description = "Register new user account";
     public string $usage = "register <username>";
+
+    public function isAvailable(): bool {
+        return !isset($_SESSION['userid']);
+    }
+
     public function run(array $args = []): void {
         $output = [];
         if (count($args) == 1) {
