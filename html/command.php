@@ -71,22 +71,8 @@ if (isset($_SESSION['input_password'])) {
 
 // ?
 if ($cmd == "?") {
-    if (!count($args)) {
-        $display[] = "Available commands: ? cls login register ver";
-        $display[] = "Use '? <command>' for more info";
-    } elseif ($args[0] == "?") {
-        $display[] = "Show available commands";
-    } elseif ($args[0] == "cls") {
-        $display[] = "Clear the screen";
-    } elseif ($args[0] == "login") {
-        $display[] = "Login to user account";
-        $display[] = "Usage: login <username>";
-    } elseif ($args[0] == "register") {
-        $display[] = "Register new user account";
-        $display[] = "Usage: register <username>";
-    } elseif ($args[0] == "ver") {
-        $display[] = "Show Console Game version";
-    }
+    $help = new Help();
+    $display = array_merge($display, $help->run($args));
 }
 
 // cls
