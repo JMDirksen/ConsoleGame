@@ -9,7 +9,11 @@ class Display {
     public string $prompt = "";
     public array $lines = [];
 
-    public function prompt_reset() {
+    public function set_prompt(string $prompt) {
+        $this->prompt = $prompt;
+    }
+
+    public function reset_prompt() {
         $this->prompt = $this->default_prompt;
     }
 

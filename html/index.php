@@ -1,12 +1,11 @@
 <?php
 require('init.php');
-$display = new Display();
 $inputType = "text";
 if (isset($_SESSION['input_password'])) {
-    $display->prompt = "Password: ";
+    DP->set_prompt("Password: ");
     $inputType = "password";
 }
-$inputSize = 80 - strlen($display->prompt);
+$inputSize = 80 - strlen(DP->prompt);
 ?>
 <html>
 
@@ -19,9 +18,9 @@ $inputSize = 80 - strlen($display->prompt);
     <form name="console" method="POST" action="command.php" spellcheck="false">
         <div class="console">
             <div class="output">
-                <?php echo $display->output() ?>
+                <?php echo DP->output() ?>
             </div>
-            <div class="input"><?php echo $display->prompt ?> <input name="command" type="<?php echo $inputType ?>" autofocus size="<?php echo $inputSize ?>" maxlength="<?php echo $inputSize ?>" onblur="focus()" /></div>
+            <div class="input"><?php echo DP->prompt ?> <input name="command" type="<?php echo $inputType ?>" autofocus size="<?php echo $inputSize ?>" maxlength="<?php echo $inputSize ?>" onblur="focus()" /></div>
         </div>
         <input type="submit" hidden />
     </form>

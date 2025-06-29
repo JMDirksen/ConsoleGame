@@ -7,27 +7,26 @@ $split = explode(" ", $command);
 $cmd = $split[0];
 $args = array_slice($split, 1);
 
-// Initalize display
-$display = new Display();
+// Show command on display
 if (!isset($_SESSION['input_password'])) {
-    $display->write($command, true);
+    DP->write($command, true);
 }
 
 // Input password
 if (isset($_SESSION['input_password'])) {
     $type = $_SESSION['input_password'];
     $password = $cmd;
-    $display->write("Password: " . str_repeat("*", 8));
+    DP->write("Password: " . str_repeat("*", 8));
 
     // Register
     if ($type == "register") {
-        $register = new Register($display);
+        $register = new Register();
         $register->password($password);
     }
 
     // Login
     elseif ($type == "login") {
-        $login = new Login($display);
+        $login = new Login();
         $login->password($password);
     }
 
@@ -36,31 +35,31 @@ if (isset($_SESSION['input_password'])) {
 
 // help
 if ($cmd == "help") {
-    $help = new Help($display);
+    $help = new Help();
     $help->run($args);
 }
 
 // clear
 if ($cmd == "clear") {
-    $clear = new Clear($display);
+    $clear = new Clear();
     $clear->run();
 }
 
 // register
 if ($cmd == "register") {
-    $register = new Register($display);
+    $register = new Register();
     $register->run($args);
 }
 
 // login
 if ($cmd == "login") {
-    $login = new Login($display);
+    $login = new Login();
     $login->run($args);
 }
 
 // version
 if ($cmd == "version") {
-    $version = new Version($display);
+    $version = new Version();
     $version->run();
 }
 

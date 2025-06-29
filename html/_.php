@@ -2,13 +2,21 @@
 require('init.php');
 echo "<pre>";
 
-print(PHP_EOL . "Session" . PHP_EOL);
-var_dump($_SESSION);
+echo PHP_EOL . "Session" . PHP_EOL;
+foreach ($_SESSION as $key => $value) {
+    echo $key . " = " . var_export($value, true) . PHP_EOL;
+}
 
-print(PHP_EOL . "Users" . PHP_EOL);
+echo PHP_EOL . "Settings" . PHP_EOL;
+$results = DB->query('SELECT * FROM setting');
+while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+    echo $row['name'] . " = " . $row['value'] . PHP_EOL;
+}
+
+echo PHP_EOL . "Users" . PHP_EOL;
 $results = DB->query('SELECT * FROM user');
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-    var_dump($row);
+    print_r($row);
 }
 
 echo "</pre>";
