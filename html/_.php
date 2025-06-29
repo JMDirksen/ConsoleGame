@@ -14,9 +14,9 @@ while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
 }
 
 echo PHP_EOL . PHP_EOL . "[Users]" . PHP_EOL . PHP_EOL;
-$results = DB->query('SELECT * FROM user');
+$results = DB->query('SELECT id, username FROM user');
 while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
-    print_r($row);
+    echo $row['id'] . ": " . $row['username'] . PHP_EOL;
 }
 
 echo "</pre>";
