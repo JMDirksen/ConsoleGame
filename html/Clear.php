@@ -1,14 +1,14 @@
 <?php
 class Clear implements CommandInterface {
-    function __construct(&$display) {
-        $this->display = &$display;
+    function __construct(Display $display) {
+        $this->display = $display;
     }
     public string $command = "clear";
     public array $aliases = ["cls"];
     public string $description = "Clear the screen";
     public string $usage = "clear";
-    private array $display;
+    private Display $display;
     public function run(array $args = []): void {
-        $this->display = [];
+        $this->display->clear();
     }
 }

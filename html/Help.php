@@ -1,13 +1,13 @@
 <?php
 class Help implements CommandInterface {
-    function __construct(&$display) {
-        $this->display = &$display;
+    function __construct(Display $display) {
+        $this->display = $display;
     }
     public string $command = "help";
     public array $aliases = ["?"];
     public string $description = "Show available commands or command info";
     public string $usage = "help [<command>]";
-    private array $display;
+    private Display $display;
     public function run(array $args = []): void {
         $output = [];
         if (!count($args)) {
@@ -28,6 +28,6 @@ class Help implements CommandInterface {
             $output[] = "Show Console Game version";
         }
 
-        $this->display = array_merge($this->display, $output);
+        $this->display->write($output);
     }
 }

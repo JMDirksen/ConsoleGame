@@ -1,13 +1,13 @@
 <?php
 class Register implements CommandInterface {
-    function __construct(&$display) {
-        $this->display = &$display;
+    function __construct(Display $display) {
+        $this->display = $display;
     }
     public string $command = "register";
     public array $aliases = [];
     public string $description = "Register new user account";
     public string $usage = "register <username>";
-    private array $display;
+    private Display $display;
     public function run(array $args = []): void {
         $output = [];
         if (count($args) == 1) {
@@ -34,7 +34,7 @@ class Register implements CommandInterface {
         } else {
             $output[] = "Usage: register <username>";
         }
-        $this->display = array_merge($this->display, $output);
+        $this->display->write($output);
     }
     public function password(string $password): void {
         $output = [];
@@ -63,6 +63,6 @@ class Register implements CommandInterface {
             $output[] = "No username";
         }
 
-        $this->display = array_merge($this->display, $output);
+        $this->display->write($output);
     }
 }

@@ -9,8 +9,6 @@ spl_autoload_register(function ($class_name) {
 session_start();
 
 // Global variables
-define("PROMPT", "CON>");
-define("DISPLAY_LINES", 32);
 define("VER", "v0.1");
 
 // Database setup

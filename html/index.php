@@ -1,13 +1,12 @@
 <?php
 require('init.php');
-$display = filter_var_array($_SESSION['display'] ?? [], FILTER_SANITIZE_SPECIAL_CHARS);
-$prompt = PROMPT;
+$display = new Display();
 $inputType = "text";
 if (isset($_SESSION['input_password'])) {
-    $prompt = "Password: ";
+    $display->prompt = "Password: ";
     $inputType = "password";
 }
-$inputSize = 80 - strlen($prompt);
+$inputSize = 80 - strlen($display->prompt);
 ?>
 <html>
 
@@ -20,9 +19,9 @@ $inputSize = 80 - strlen($prompt);
     <form name="console" method="POST" action="command.php" spellcheck="false">
         <div class="console">
             <div class="output">
-                <?php echo implode("<br />", $display) ?>
+                <?php echo $display->output() ?>
             </div>
-            <div class="input"><?php echo $prompt ?> <input name="command" type="<?php echo $inputType ?>" autofocus size="<?php echo $inputSize ?>" maxlength="<?php echo $inputSize ?>" onblur="focus()" /></div>
+            <div class="input"><?php echo $display->prompt ?> <input name="command" type="<?php echo $inputType ?>" autofocus size="<?php echo $inputSize ?>" maxlength="<?php echo $inputSize ?>" onblur="focus()" /></div>
         </div>
         <input type="submit" hidden />
     </form>

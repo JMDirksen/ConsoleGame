@@ -1,6 +1,6 @@
 <?php
 interface CommandInterface {
-    function __construct(array &$display);
+    function __construct(Display $display);
     public string $command { get; }
     public array $aliases { get; }
     public string $description { get; }

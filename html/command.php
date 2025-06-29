@@ -8,16 +8,16 @@ $cmd = $split[0];
 $args = array_slice($split, 1);
 
 // Initalize display
-$display = $_SESSION['display'] ?? [];
+$display = new Display();
 if (!isset($_SESSION['input_password'])) {
-    $display[] = PROMPT . " " . $command;
+    $display->write($command, true);
 }
 
 // Input password
 if (isset($_SESSION['input_password'])) {
     $type = $_SESSION['input_password'];
     $password = $cmd;
-    $display[] = "Password: " . str_repeat("*", 8);
+    $display->write("Password: " . str_repeat("*", 8));
 
     // Register
     if ($type == "register") {
@@ -30,7 +30,7 @@ if (isset($_SESSION['input_password'])) {
         $login = new Login($display);
         $login->password($password);
     }
-    
+
     unset($_SESSION['input_password']);
 }
 
@@ -64,12 +64,4 @@ if ($cmd == "version") {
     $version->run();
 }
 
-// Limit display lines
-$lineCount = count($display);
-if ($lineCount > DISPLAY_LINES) {
-    array_splice($display, 0, $lineCount - DISPLAY_LINES);
-}
-
-// Output
-$_SESSION['display'] = $display;
 header('Location: /');

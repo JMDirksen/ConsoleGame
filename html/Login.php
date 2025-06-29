@@ -1,13 +1,13 @@
 <?php
 class Login implements CommandInterface {
-    function __construct(&$display) {
-        $this->display = &$display;
+    function __construct(Display $display) {
+        $this->display = $display;
     }
     public string $command = "login";
     public array $aliases = [];
     public string $description = "";
     public string $usage = "login <username>";
-    private array $display;
+    private Display $display;
     public function run(array $args = []): void {
         $output = [];
 
@@ -26,7 +26,7 @@ class Login implements CommandInterface {
             $output[] = "Usage: $this->usage";
         }
 
-        $this->display = array_merge($this->display, $output);
+        $this->display->write($output);
     }
 
     public function password(string $password): void {
@@ -50,6 +50,6 @@ class Login implements CommandInterface {
             $output[] = "No username";
         }
 
-        $this->display = array_merge($this->display, $output);
+        $this->display->write($output);
     }
 }
