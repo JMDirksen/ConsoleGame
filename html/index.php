@@ -5,7 +5,7 @@ if (isset($_SESSION['input_password'])) {
     DP->set_prompt("Password: ");
     $inputType = "password";
 }
-$inputSize = 80 - strlen(DP->prompt);
+$inputSize = 78 - strlen(DP->prompt);
 ?>
 <html>
 
